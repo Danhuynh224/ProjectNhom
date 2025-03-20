@@ -2,6 +2,7 @@ package com.example.app;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -55,7 +56,7 @@ public class LoginActivity extends AppCompatActivity {
 
         // Tạo user request
         boolean active =true;
-        User user = new User(email, password, active);
+        User user = new User(email, password);
 
         // Gửi request đến API
         Call<ApiResponse> call = authAPI.login(user);
@@ -63,8 +64,12 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
+                    SharedPreferences sharedPreferences = getSharedPreferences("user", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("email", email);
+                    editor.putString("password", password);
+                    editor.commit();
                     Toast.makeText(LoginActivity.this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
-
                     // Chuyển sang MainActivity
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
