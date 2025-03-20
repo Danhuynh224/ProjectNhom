@@ -1,7 +1,9 @@
 package com.example.app;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,6 +31,10 @@ public class MainActivity extends AppCompatActivity {
     ServiceAPI apiService;
     List<Category> categoryList;
 
+    SharedPreferences sharedPreferences;
+    TextView tvName;
+    String name;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +44,12 @@ public class MainActivity extends AppCompatActivity {
 
         AnhXa();
         GetCategory();
+
+        sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+        name = sharedPreferences.getString("user_name", "");
+
+        tvName = findViewById(R.id.tvName);
+        tvName.setText("Hi! " + name);
     }
 
     private void AnhXa() {

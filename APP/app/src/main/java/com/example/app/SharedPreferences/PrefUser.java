@@ -7,4 +7,6 @@ public class PrefUser {
     public PrefUser(Context context) {
         this.context = context;
     }
+
+
 }
