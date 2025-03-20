@@ -18,7 +18,7 @@ public class IntroActivity extends AppCompatActivity {
         btnStart.setOnClickListener(v -> {
             Intent intent;
             SharedPreferences sharedPreferences = getSharedPreferences("user", MODE_PRIVATE);
-            String username = sharedPreferences.getString("username", "");
+            String username = sharedPreferences.getString("email", "");
             String password = sharedPreferences.getString("password", "");
             if (username != null && password != null)
             {

@@ -45,8 +45,8 @@ public class MainActivity extends AppCompatActivity {
         AnhXa();
         GetCategory();
 
-        sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
-        name = sharedPreferences.getString("user_name", "");
+        sharedPreferences = getSharedPreferences("user", MODE_PRIVATE);
+        name = sharedPreferences.getString("email", "");
 
         tvName = findViewById(R.id.tvName);
         tvName.setText("Hi! " + name);
