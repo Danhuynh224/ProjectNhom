@@ -32,6 +32,9 @@ public class User {
     private String password;
     private boolean active = false;
 
+    public User(String email, String password, boolean active) {
+    }
+
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
 
