@@ -15,6 +15,7 @@ public class IntroActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.intro);
         Button btnStart = findViewById(R.id.btn_start);
+
         btnStart.setOnClickListener(v -> {
             Intent intent;
             SharedPreferences sharedPreferences = getSharedPreferences("user", MODE_PRIVATE);
