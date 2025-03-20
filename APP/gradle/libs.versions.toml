@@ -21,6 +21,7 @@ activity = { group = "androidx.activity", name = "activity", version.ref = "acti
 constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 retrofit = {group = "com.squareup.retrofit2", name= "retrofit", version.ref="retrofit"}
 converter = {group = "com.squareup.retrofit2", name ="converter-gson", version.ref="converter"}
+glide = {group="com.github.bumptech.glide", name ="glide", version.ref="glide"}
 gson ={group="com.google.code.gson", name ="gson", version.ref="gson"}
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
