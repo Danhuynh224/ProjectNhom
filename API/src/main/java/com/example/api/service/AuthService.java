@@ -7,6 +7,7 @@ import com.example.api.repository.OTPRepository;
 import com.example.api.repository.UserRepository;
 import com.example.api.request.ForgetRequest;
 import com.example.api.request.OTPRequest;
+import com.example.api.request.ResetPassRequest;
 import io.swagger.v3.oas.models.info.Contact;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,6 +70,18 @@ public class AuthService {
             System.out.println(newpass);
         }
     }
+
+
+    public boolean resetPass(ResetPassRequest resetPassRequest) {
+        User existingUser = userRepository.findByEmail(resetPassRequest.getEmail());
+        if (existingUser != null && BCrypt.checkpw(resetPassRequest.getOldPass(), existingUser.getPassword())) {
+            existingUser.setPassword(BCrypt.hashpw(resetPassRequest.getNewPass(), BCrypt.gensalt()));
+            userRepository.save(existingUser);
+            return true;
+        }
+        return false;
+    }
+
     public void sendPassToEmail(String email, String pass) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(email);
