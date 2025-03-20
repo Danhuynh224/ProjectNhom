@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,7 +31,7 @@ public class LoginActivity extends AppCompatActivity {
         // Ánh xạ các thành phần giao diện
         emailInput = findViewById(R.id.emailInput);
         passwordInput = findViewById(R.id.passwordInput);
-        @SuppressLint("WrongViewCast") Button loginButton = findViewById(R.id.arrow);
+        ImageButton loginButton = findViewById(R.id.arrow);
 
         // Xử lý sự kiện khi bấm nút đăng nhập
         loginButton.setOnClickListener(new View.OnClickListener() {
