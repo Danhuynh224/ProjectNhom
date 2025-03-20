@@ -8,6 +8,6 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 
 public interface ServiceAPI {
-    @GET("categories")
+    @GET("/all-categories")
     Call<List<Category>> getCategoriesAll();
 }
