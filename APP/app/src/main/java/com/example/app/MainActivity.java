@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.intro);
+        setContentView(R.layout.activity_main);
 
 
         AnhXa();
@@ -81,7 +81,5 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("logg", t.getMessage());
             }
         });
-
-
     }
 }
