@@ -1,6 +1,8 @@
 package com.example.app;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,6 +11,10 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
+
+    SharedPreferences sharedPreferences;
+    TextView tvName;
+    String name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,5 +26,11 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+        name = sharedPreferences.getString("user_name", "");
+
+        tvName = findViewById(R.id.tvName);
+        tvName.setText("Hi! " + name);
     }
 }
