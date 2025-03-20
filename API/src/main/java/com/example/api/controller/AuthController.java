@@ -73,4 +73,3 @@ public class AuthController {
         response.put("message", "Please check your email");
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
-}
