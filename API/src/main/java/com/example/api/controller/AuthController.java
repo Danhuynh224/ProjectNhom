@@ -1,6 +1,9 @@
 package com.example.api.controller;
 
+import com.example.api.entity.OTP;
 import com.example.api.entity.User;
+import com.example.api.request.ForgetRequest;
+import com.example.api.request.OTPRequest;
 import com.example.api.service.AuthService;
 import com.example.api.service.OTPService;
 import com.example.api.utils.ErrorResponse;
@@ -8,10 +11,7 @@ import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -50,5 +50,26 @@ public class AuthController {
         }
 
         return new ResponseEntity<>(loginUser, HttpStatus.CREATED);
+    }
+    @PostMapping("/active")
+    public ResponseEntity<?> active(@RequestBody OTPRequest otpRequest) {
+        if(authService.activeUser(otpRequest))
+        {
+            Map<String, String> response = new HashMap<>();
+            response.put("message", "Your account is active");
+            return new ResponseEntity<>(response, HttpStatus.CREATED);
+        }
+        ErrorResponse error = new ErrorResponse(HttpStatus.BAD_REQUEST.value(),
+                "Active unsuccessful",
+                "Your OTP is incorrect.");
+        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+    }
+
+    @PostMapping("/forget")
+    public ResponseEntity<?> forget(@RequestBody ForgetRequest forgetRequest) {
+        authService.forget(forgetRequest);
+        Map<String, String> response = new HashMap<>();
+        response.put("message", "Please check your email");
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 }

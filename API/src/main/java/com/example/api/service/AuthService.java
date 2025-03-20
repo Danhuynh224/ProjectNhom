@@ -1,17 +1,28 @@
 package com.example.api.service;
 
+import com.example.api.entity.OTP;
 import com.example.api.entity.User;
+import com.example.api.repository.OTPRepository;
 import com.example.api.repository.UserRepository;
+import com.example.api.request.ForgetRequest;
+import com.example.api.request.OTPRequest;
 import io.swagger.v3.oas.models.info.Contact;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
+
+import java.util.UUID;
 
 @Service
 public class AuthService {
     @Autowired
     UserRepository userRepository;
-
+    @Autowired
+    OTPRepository otpRepository;
+    @Autowired
+    private JavaMailSender emailSender;
     public User registerUser(User user) {
         User existingUser = userRepository.findByEmail(user.getEmail());
         if (existingUser != null) {
@@ -29,5 +40,39 @@ public class AuthService {
             return null;
         }
         return existingUser;
+    }
+
+    public boolean activeUser(OTPRequest otpRequest) {
+        User user = userRepository.findByEmail(otpRequest.getEmail());
+        OTP otp = otpRepository.findByEmail(otpRequest.getEmail());
+        if (user != null && otp != null && !user.isActive()) {
+            if (otpRequest.getOtp().equals(otp.getValue())) {
+                user.setActive(true);
+                userRepository.save(user);
+                otpRepository.delete(otp);
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    public void forget(ForgetRequest forgetRequest) {
+        User existingUser = userRepository.findByEmail(forgetRequest.getEmail());
+
+        if (existingUser != null) {
+            String newpass = UUID.randomUUID().toString().replace("-", "");
+            sendPassToEmail(existingUser.getEmail(),  newpass );
+            existingUser.setPassword(BCrypt.hashpw(newpass, BCrypt.gensalt()));
+            userRepository.save(existingUser);
+            System.out.println(newpass);
+        }
+    }
+    public void sendPassToEmail(String email, String pass) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(email);
+        message.setSubject("Your new password");
+        message.setText("Your new password is: " + pass);
+        emailSender.send(message);
     }
 }
