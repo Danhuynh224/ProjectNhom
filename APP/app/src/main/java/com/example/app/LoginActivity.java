@@ -2,10 +2,12 @@ package com.example.app;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,7 +32,7 @@ public class LoginActivity extends AppCompatActivity {
         // Ánh xạ các thành phần giao diện
         emailInput = findViewById(R.id.emailInput);
         passwordInput = findViewById(R.id.passwordInput);
-        @SuppressLint("WrongViewCast") Button loginButton = findViewById(R.id.arrow);
+        ImageButton loginButton = findViewById(R.id.arrow);
 
         // Xử lý sự kiện khi bấm nút đăng nhập
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -54,7 +56,7 @@ public class LoginActivity extends AppCompatActivity {
 
         // Tạo user request
         boolean active =true;
-        User user = new User(email, password, active);
+        User user = new User(email, password);
 
         // Gửi request đến API
         Call<ApiResponse> call = authAPI.login(user);
@@ -62,8 +64,12 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
+                    SharedPreferences sharedPreferences = getSharedPreferences("user", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("email", email);
+                    editor.putString("password", password);
+                    editor.commit();
                     Toast.makeText(LoginActivity.this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
-
                     // Chuyển sang MainActivity
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);

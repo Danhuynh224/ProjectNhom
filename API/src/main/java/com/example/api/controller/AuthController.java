@@ -1,10 +1,12 @@
-`// Huỳnh Việt Đan -22110306
+// Huỳnh Việt Đan -22110306
+// Huỳnh Việt Đan -22110306
 package com.example.api.controller;
 
 import com.example.api.entity.OTP;
 import com.example.api.entity.User;
 import com.example.api.request.ForgetRequest;
 import com.example.api.request.OTPRequest;
+import com.example.api.request.ResetPassRequest;
 import com.example.api.service.AuthService;
 import com.example.api.service.OTPService;
 import com.example.api.utils.ErrorResponse;
@@ -73,5 +75,17 @@ public class AuthController {
         response.put("message", "Please check your email");
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
+
+    @PutMapping("reset")
+    public ResponseEntity<?> reset(@RequestBody ResetPassRequest resetPassRequest) {
+        if(authService.resetPass(resetPassRequest)){
+            Map<String, String> response = new HashMap<>();
+            response.put("message", "New password has been reset");
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        }
+        ErrorResponse error = new ErrorResponse(HttpStatus.BAD_REQUEST.value(),
+                "Reset unsuccessful",
+                "Your password is incorrect.");
+        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+    }
 }
-`
