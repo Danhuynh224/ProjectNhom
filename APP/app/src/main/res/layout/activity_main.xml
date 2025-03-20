@@ -61,8 +61,7 @@
                     android:id="@+id/student_image"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:src="@drawable/pro_trung"
-                    app:civ_border_width="4dp"/>
+                    android:src="@drawable/pro_trung" />
             </LinearLayout>
 
             <!-- Ô tìm kiếm -->
@@ -229,8 +228,9 @@
 
                     <ImageView
                         android:id="@+id/imvHome"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
                         android:layout_weight="1"
                         app:srcCompat="@drawable/bottom_btn1" />
 
@@ -252,8 +252,9 @@
 
                     <ImageView
                         android:id="@+id/imvProfile"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
                         app:srcCompat="@drawable/bottom_btn2" />
 
                     <TextView
@@ -275,8 +276,9 @@
 
                     <ImageView
                         android:id="@+id/imvCart"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
                         android:layout_weight="1"
                         app:srcCompat="@drawable/bottom_btn5" />
 
@@ -298,8 +300,9 @@
 
                     <ImageView
                         android:id="@+id/imvSupport"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
                         android:layout_weight="1"
                         app:srcCompat="@drawable/bottom_btn3" />
 
@@ -321,8 +324,9 @@
 
                     <ImageView
                         android:id="@+id/imvSettings"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
                         android:layout_weight="1"
                         app:srcCompat="@drawable/bottom_btn4" />
 
