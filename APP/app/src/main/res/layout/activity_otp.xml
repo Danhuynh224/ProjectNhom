@@ -38,6 +38,7 @@
             android:textSize="40sp" />
 
         <TextView
+            android:id="@+id/tv_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="hongsonnocap@gmail.com"
@@ -132,6 +133,7 @@
                 android:textSize="18sp" />
         </LinearLayout>
         <ImageButton
+            android:id="@+id/btn_active"
             android:paddingTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -140,17 +142,7 @@
             android:layout_gravity="end">
         </ImageButton>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_marginTop="10dp"
-            android:layout_gravity="center"
-            android:text="Resend OTP"
-            android:textColor="#6881A0">
 
-        </TextView>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

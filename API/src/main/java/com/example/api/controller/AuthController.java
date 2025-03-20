@@ -1,4 +1,3 @@
-`// Huỳnh Việt Đan -22110306
 package com.example.api.controller;
 
 import com.example.api.entity.OTP;
@@ -74,4 +73,3 @@ public class AuthController {
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 }
-`

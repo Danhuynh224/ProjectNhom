@@ -19,6 +19,7 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
+        android:layout_marginTop="-65dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -62,17 +63,47 @@
             android:layout_marginBottom="5dp">
 
         </EditText>
+
         <EditText
             android:id="@+id/tv_pass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Password"
-            android:textSize="23sp"
-            android:inputType="textPassword"
             android:drawableLeft="@drawable/password"
             android:drawablePadding="15dp"
-            android:paddingBottom="18dp">
-        </EditText>
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:paddingBottom="18dp"
+            android:textSize="23sp"></EditText>
+        <EditText
+            android:id="@+id/tv_passConf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/password"
+            android:drawablePadding="15dp"
+            android:hint="Conform Password"
+            android:inputType="textPassword"
+            android:paddingBottom="18dp"
+            android:textSize="23sp"></EditText>
+        <RadioGroup
+            android:id="@+id/genderGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/radioMale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Male" />
+
+            <RadioButton
+                android:id="@+id/radioFemale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Female" />
+        </RadioGroup>
+
+
         <ImageButton
             android:id="@+id/btn_signup"
             android:paddingTop="10dp"
