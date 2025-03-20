@@ -86,7 +86,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Search"
-                    android:textSize="16sp"
+                    android:textSize="16ssp"
                     android:background="@null"
                     android:padding="0dp"
                     android:singleLine="true"/>
