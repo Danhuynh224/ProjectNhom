@@ -10,6 +10,7 @@ constraintlayout = "2.2.1"
 retrofit = "2.9.0"
 converter="2.9.0"
 gson = "2.10"
+circleimageview = "3.1.0"
 
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -22,6 +23,8 @@ constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayo
 retrofit = {group = "com.squareup.retrofit2", name= "retrofit", version.ref="retrofit"}
 converter = {group = "com.squareup.retrofit2", name ="converter-gson", version.ref="converter"}
 gson ={group="com.google.code.gson", name ="gson", version.ref="gson"}
+circleimageview = { group = "de.hdodenhof", name = "circleimageview", version.ref = "circleimageview" }
+
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 
