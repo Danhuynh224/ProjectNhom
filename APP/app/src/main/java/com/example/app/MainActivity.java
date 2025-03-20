@@ -45,13 +45,12 @@ public class MainActivity extends AppCompatActivity {
 
 
         AnhXa();
-//        GetCategory();
+        GetCategory();
         GetProduct();
-//        sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
-//        name = sharedPreferences.getString("user_name", "");
-//
-//        tvName = findViewById(R.id.tvName);
-//        tvName.setText("Hi! " + name);
+        sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+        name = sharedPreferences.getString("user_name", "");
+        tvName = findViewById(R.id.tvName);
+        tvName.setText("Hi! " + name);
     }
 
     private void AnhXa() {
