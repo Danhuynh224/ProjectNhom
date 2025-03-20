@@ -1,12 +1,13 @@
 package com.example.app.API;
 
+import com.example.app.Model.ApiResponse;
+import com.example.app.Model.ForgetRequest;
+import com.example.app.Model.OTPRequest;
+import com.example.app.Model.User;
+
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
-import vn.iostar.signupsignindemo.Model.ApiResponse;
-import vn.iostar.signupsignindemo.Model.ForgetRequest;
-import vn.iostar.signupsignindemo.Model.OTPRequest;
-import vn.iostar.signupsignindemo.Model.User;
 
 public interface AuthAPI {
     @POST("/api/auth/register")
