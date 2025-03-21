@@ -7,16 +7,15 @@ import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.app.API.RetrofitClient;
 import com.example.app.API.ServiceAPI;
 import com.example.app.Model.Category;
+import com.example.app.Model.Product;
 import com.example.app.adapter.CategoryAdapter;
+import com.example.app.adapter.ProductAdapter;
 
 import java.util.List;
 
@@ -27,9 +26,12 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity {
 
     RecyclerView rcCate;
+    RecyclerView rcProduct;
     CategoryAdapter categoryAdapter;
+    ProductAdapter productAdapter;
     ServiceAPI apiService;
     List<Category> categoryList;
+    List<Product> productList;
 
     SharedPreferences sharedPreferences;
     TextView tvName;
@@ -44,16 +46,16 @@ public class MainActivity extends AppCompatActivity {
 
         AnhXa();
         GetCategory();
-
+        GetProduct();
         sharedPreferences = getSharedPreferences("user", MODE_PRIVATE);
         name = sharedPreferences.getString("email", "");
-
         tvName = findViewById(R.id.tvName);
         tvName.setText("Hi! " + name);
     }
 
     private void AnhXa() {
         rcCate = findViewById(R.id.recyclerCategories);
+        rcProduct = findViewById(R.id.recyclerLastProducts);
     }
 
     private void GetCategory() {
@@ -79,6 +81,32 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<Category>> call, Throwable t) {
                 Log.d("logg", t.getMessage());
+            }
+        });
+    }
+
+    private void GetProduct() {
+        apiService = RetrofitClient.getClient().create(ServiceAPI.class);
+        apiService.getLastProducts().enqueue(new Callback<List<Product>>(){
+            @Override
+            public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
+                if(response.isSuccessful()) {
+                    productList = response.body();
+                    productAdapter = new ProductAdapter(MainActivity.this, productList);
+                    rcCate.setHasFixedSize(true);
+                    RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext(),
+                            LinearLayoutManager.HORIZONTAL, false);
+                    rcProduct.setLayoutManager(layoutManager);
+                    rcProduct.setAdapter(productAdapter);
+                    productAdapter.notifyDataSetChanged();
+                } else {
+                    int statusCode = response.code();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Product>> call, Throwable t) {
+                Log.d("logg product", t.getMessage());
             }
         });
     }

@@ -4,6 +4,11 @@ public class User {
     private String name;
     private int gender;
 
+    public User(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
+
     public String getName() {
         return name;
     }
